@@ -2,6 +2,8 @@
 
 import { User, DollarSign } from 'lucide-react'
 import PageHeader from '@/components/PageHeader'
+import FamilyWalletsStatsCards from './components/FamilyWalletsStatsCards'
+import UnderstandingRolesSection from './components/UnderstandingRolesSection'
 
 export default function FamilyWallets() {
   function handleAddMember() {
@@ -19,6 +21,10 @@ export default function FamilyWallets() {
       />
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+        <section className="mb-8">
+          <FamilyWalletsStatsCards />
+        </section>
+
         {/* Family Members */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
           <MemberCard
@@ -40,6 +46,10 @@ export default function FamilyWallets() {
             spendingLimit={2000}
           />
         </div>
+
+        <section className="mb-8">
+          <UnderstandingRolesSection />
+        </section>
 
         {/* Add Member Form */}
         <div className="bg-[#0f0f0f] rounded-xl border border-white/5 p-8">

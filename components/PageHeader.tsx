@@ -9,6 +9,8 @@ type PageHeaderProps = {
   ctaLabel: string
   onCtaClick?: () => void
   showBottomDivider?: boolean
+  /** 'red' (default) or 'redOrange' for reddish-orange CTA e.g. Savings Goals */
+  ctaVariant?: 'red' | 'redOrange'
 }
 
 export default function PageHeader({
@@ -17,8 +19,14 @@ export default function PageHeader({
   ctaLabel,
   onCtaClick,
   showBottomDivider = false,
+  ctaVariant = 'red',
 }: PageHeaderProps) {
   const router = useRouter()
+
+  const ctaClass =
+    ctaVariant === 'redOrange'
+      ? 'flex items-center justify-center gap-2 w-full sm:w-auto px-5 py-2.5 rounded-xl bg-orange-600 hover:bg-orange-500 bg-gradient-to-b from-orange-600 to-orange-700 text-white font-medium transition-colors shadow-sm'
+      : 'flex items-center justify-center gap-2 w-full sm:w-auto px-5 py-2.5 rounded-xl bg-red-600 hover:bg-red-500 bg-gradient-to-b from-red-600 to-red-700 text-white font-medium transition-colors shadow-sm'
 
   return (
     <header className="bg-[#010101] text-white">
@@ -41,7 +49,7 @@ export default function PageHeader({
           <button
             type="button"
             onClick={onCtaClick}
-            className="flex items-center justify-center gap-2 w-full sm:w-auto px-5 py-2.5 rounded-xl bg-red-600 hover:bg-red-500 bg-gradient-to-b from-red-600 to-red-700 text-white font-medium transition-colors shadow-sm"
+            className={ctaClass}
           >
             <Plus className="w-5 h-5" />
             <span>{ctaLabel}</span>
