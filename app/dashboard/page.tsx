@@ -8,6 +8,7 @@ import {
   File,
   FileTextIcon,
 } from "lucide-react";
+import CurrentMoneySplitWidget from '@/components/CurrentMoneySplitWidget'
 import GoalProgress from "@/components/Dashboard/GoalProgress";
 import SplitBar from "@/components/Dashboard/SplitBar";
 import StatCard from "@/components/Dashboard/StatCard";
@@ -35,79 +36,45 @@ export default function Dashboard() {
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Stats Overview */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
           <StatCard
             title="Total Sent"
             value="$1,200"
-            change="+$300 this month"
-            icon={<DollarSign className="w-6 h-6" />}
-            trend="up"
+            detail1="+$300"
+            detail1Color="text-red-500"
+            detail2="+25%"
+            icon={Send}
+            showTrend={true}
           />
           <StatCard
             title="Savings"
             value="$360"
-            change="+$90 this month"
-            icon={<PiggyBank className="w-6 h-6" />}
-            trend="up"
+            detail1="+$90"
+            detail1Color="text-red-500"
+            detail2="+33%"
+            icon={PiggyBank}
+            showTrend={true}
           />
           <StatCard
             title="Bills Paid"
             value="$180"
-            change="3 bills this month"
-            icon={<TrendingUp className="w-6 h-6" />}
-            trend="neutral"
+            detail1="3 bills"
+            detail2="This month"
+            icon={FileText}
           />
           <StatCard
             title="Insurance"
             value="$60"
-            change="2 active policies"
-            icon={<TrendingDown className="w-6 h-6" />}
-            trend="neutral"
+            detail1="2 policies"
+            detail2="Active"
+            icon={Shield}
           />
         </div>
 
         {/* Money Split Visualization */}
-        <div
-          className="rounded-xl shadow-md p-6 mb-8"
-          style={{ backgroundImage: "var(--card)" }}
-        >
-          <h2 className="text-xl font-bold text-(--foreground) mb-4">
-            Current Money Split
-          </h2>
-          <div className="space-y-4">
-            <SplitBar
-              label="Daily Spending"
-              amount={150}
-              percentage={50}
-              color="bg-blue-500"
-            />
-            <SplitBar
-              label="Savings"
-              amount={90}
-              percentage={30}
-              color="bg-green-500"
-            />
-            <SplitBar
-              label="Bills"
-              amount={45}
-              percentage={15}
-              color="bg-yellow-500"
-            />
-            <SplitBar
-              label="Insurance"
-              amount={15}
-              percentage={5}
-              color="bg-purple-500"
-            />
-          </div>
-          <div className="mt-6">
-            <Link
-              href="/split"
-              className="text-blue-600 hover:text-blue-700 font-semibold"
-            >
-              Configure Split Settings →
-            </Link>
-          </div>
+        {/* Money Split Visualization */}
+        <div className="mb-8">
+          <CurrentMoneySplitWidget />
         </div>
 
         {/* Recent Transactions */}
@@ -229,3 +196,4 @@ export default function Dashboard() {
     </div>
   );
 }
+
