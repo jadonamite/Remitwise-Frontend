@@ -3,7 +3,6 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import {
-  ArrowLeft,
   Wallet,
   Bell,
   Globe,
@@ -18,6 +17,7 @@ import {
 } from "lucide-react";
 import SettingsSection from "@/components/SettingsSection";
 import SettingsItem from "@/components/SettingsItem";
+import SettingsHeader from "@/components/SettingsHeader";
 
 export default function SettingsPage() {
   // Mock state for settings
@@ -35,18 +35,7 @@ export default function SettingsPage() {
 
   return (
     <main className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <header className="bg-white border-b border-gray-200 sticky top-0 z-10">
-        <div className="max-w-3xl mx-auto px-4 py-4 flex items-center">
-          <Link
-            href="/dashboard"
-            className="p-2 -ml-2 text-gray-600 hover:bg-gray-100 rounded-full transition-colors"
-          >
-            <ArrowLeft className="w-6 h-6" />
-          </Link>
-          <h1 className="ml-4 text-xl font-bold text-gray-900">Settings</h1>
-        </div>
-      </header>
+      <SettingsHeader />
 
       <div className="max-w-3xl mx-auto py-6">
         {/* Account Section */}
