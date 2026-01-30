@@ -9,6 +9,7 @@ import {
   Settings,
 } from "lucide-react";
 import FAQSection from "@/components/FAQSection";
+import FeatureSection from "@/components/FeatureSection";
 
 export default function Home() {
   return (
@@ -65,45 +66,8 @@ export default function Home() {
           </p>
         </div>
 
-        {/* Feature Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-          <FeatureCard
-            icon={<Send className="w-8 h-8" />}
-            title="Send Money"
-            description="Fast, low-cost transfers using Stellar network with on-chain transaction proof"
-            href="/send"
-          />
-          <FeatureCard
-            icon={<PiggyBank className="w-8 h-8" />}
-            title="Smart Money Split"
-            description="Automatically allocate remittance into spending, savings, bills, and insurance"
-            href="/split"
-          />
-          <FeatureCard
-            icon={<TrendingUp className="w-8 h-8" />}
-            title="Savings Goals"
-            description="Goal-based savings for education, medical, marriage with visual progress tracking"
-            href="/goals"
-          />
-          <FeatureCard
-            icon={<FileText className="w-8 h-8" />}
-            title="Bill Payments"
-            description="Automated bill payments for electricity, school fees, rent with reminders"
-            href="/bills"
-          />
-          <FeatureCard
-            icon={<Shield className="w-8 h-8" />}
-            title="Micro-Insurance"
-            description="Health and emergency coverage with auto-paid premiums from remittance"
-            href="/insurance"
-          />
-          <FeatureCard
-            icon={<Users className="w-8 h-8" />}
-            title="Family Wallets"
-            description="Separate wallets for family members with spending limits and approvals"
-            href="/family"
-          />
-        </div>
+        {/* New Dark Feature Cards */}
+        <FeatureSection />
 
         {/* Quick Actions */}
         <div className="bg-white rounded-xl shadow-lg p-8">
