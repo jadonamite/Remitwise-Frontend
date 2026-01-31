@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function Hero() {
   return (
-    <section className="relative flex min-h-[700px] md:min-h-[900px] w-full items-center justify-center overflow-hidden bg-black px-4 sm:px-6">
+    <section className="relative flex min-h-[700px] md:min-h-[900px] w-full pt-24 justify-center overflow-hidden bg-black px-4 sm:px-6">
       {/* Starry background */}
       <div className="absolute inset-0 bg-[radial-gradient(#ffffff1a_1px,transparent_1px)] [background-size:24px_24px]" />
 
