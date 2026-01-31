@@ -5,12 +5,6 @@ import Header from "@/components/Header";
 import Footer from "@/components/footer";
 import FinalCallToAction from "@/components/FinalCallToAction";
 
-export default function LayoutWrapper({ children }: { children: React.ReactNode }) {
-    const pathname = usePathname();
-    const isExcluded =
-        pathname === "/transactions" ||
-        pathname.startsWith("/dashboard") ||
-        pathname === "/financial-insights";
 export default function LayoutWrapper({
   children,
 }: {
