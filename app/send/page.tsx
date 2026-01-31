@@ -28,6 +28,20 @@ export default function SendMoney() {
 
 export default function SendMoney() {
   const [showEmergencyModal, setShowEmergencyModal] = useState(false);
+  const [previewAmount, setPreviewAmount] = useState<number | null>(null);
+  const [previewCurrency, setPreviewCurrency] = useState<string | null>(null);
+
+  const handlePreview = () => {
+    // Handle preview transaction
+    console.log("Preview transaction clicked");
+  };
+
+  const handleSend = (amount: number, currency: string) => {
+    setPreviewAmount(amount);
+    setPreviewCurrency(currency);
+    // Handle send remittance
+    console.log(`Send ${amount} ${currency}`);
+  };
 
   return (
     <div className="min-h-screen bg-black">
@@ -78,10 +92,7 @@ export default function SendMoney() {
               </div>
             </div>
 
-            {/* Amount and Currency Section - OUR COMPONENT */}
-            <div className="bg-black">
-              <AmountCurrencySection onPreview={handlePreview} onSend={handleSend} />
-            </div>
+            < AmountCurrencySection/>
 
             {/* Emergency Transfer Section - Placeholder */}
             <div className="bg-red-950/30 border border-red-900 rounded-xl p-6">
@@ -101,23 +112,81 @@ export default function SendMoney() {
               </div>
               <p className="text-xs text-yellow-600 mt-4">⚠️ Emergency transfers incur a 2% processing fee and bypass your automatic split rules.</p>
             </div>
-          </form>
+          </div>
 
-          {/* Emergency Mode */}
-          <div className="mt-8 pt-8 border-t border-gray-200">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">
-              Emergency Transfer
-            </h3>
-            <p className="text-gray-600 mb-4">
-              Need to send money urgently? Use emergency mode for priority
-              processing.
-            </p>
-            <button
-              className="bg-red-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-red-700 transition"
-              onClick={() => setShowEmergencyModal(true)}
-            >
-              Emergency Transfer
-            </button>
+          {/* Right Column - Automatic Split Preview - Placeholder */}
+          <div className="lg:col-span-1">
+            <div className="bg-neutral-950 rounded-xl p-6 border border-gray-800 sticky top-8">
+              <div className="flex items-center gap-2 mb-6">
+                <AlertCircle className="w-6 h-6 text-red-500" />
+                <h3 className="text-lg font-semibold text-white">Automatic Split</h3>
+              </div>
+              
+              <p className="text-sm text-gray-400 mb-6">Your remittance will be automatically split according to configured allocation rules:</p>
+              
+              {/* Split Items */}
+              <div className="space-y-4 mb-6">
+                <div>
+                  <div className="flex justify-between items-center mb-2">
+                    <span className="text-sm text-gray-300">Daily Spending</span>
+                    <span className="text-sm font-semibold text-white">$0.00</span>
+                    <span className="text-xs text-gray-500">50%</span>
+                  </div>
+                  <div className="w-full bg-gray-800 rounded-full h-2">
+                    <div className="bg-red-600 h-2 rounded-full" style={{ width: "50%" }}></div>
+                  </div>
+                </div>
+
+                <div>
+                  <div className="flex justify-between items-center mb-2">
+                    <span className="text-sm text-gray-300">Savings</span>
+                    <span className="text-sm font-semibold text-white">$0.00</span>
+                    <span className="text-xs text-gray-500">30%</span>
+                  </div>
+                  <div className="w-full bg-gray-800 rounded-full h-2">
+                    <div className="bg-blue-600 h-2 rounded-full" style={{ width: "30%" }}></div>
+                  </div>
+                </div>
+
+                <div>
+                  <div className="flex justify-between items-center mb-2">
+                    <span className="text-sm text-gray-300">Bills</span>
+                    <span className="text-sm font-semibold text-white">$0.00</span>
+                    <span className="text-xs text-gray-500">15%</span>
+                  </div>
+                  <div className="w-full bg-gray-800 rounded-full h-2">
+                    <div className="bg-purple-600 h-2 rounded-full" style={{ width: "15%" }}></div>
+                  </div>
+                </div>
+
+                <div>
+                  <div className="flex justify-between items-center mb-2">
+                    <span className="text-sm text-gray-300">Insurance</span>
+                    <span className="text-sm font-semibold text-white">$0.00</span>
+                    <span className="text-xs text-gray-500">5%</span>
+                  </div>
+                  <div className="w-full bg-gray-800 rounded-full h-2">
+                    <div className="bg-green-600 h-2 rounded-full" style={{ width: "5%" }}></div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Total */}
+              <div className="border-t border-gray-800 pt-4">
+                <div className="flex justify-between items-baseline">
+                  <span className="text-gray-400">Total Amount</span>
+                  <span className="text-3xl font-bold text-white">$0.00</span>
+                </div>
+                <p className="text-xs text-gray-500 mt-3">Enter an amount to see split preview</p>
+              </div>
+
+              {/* Info */}
+              <div className="mt-6 p-3 bg-gray-800 rounded-lg border border-gray-700">
+                <p className="text-xs text-gray-400">
+                  <span className="text-green-400 font-semibold">⚡ Fast & Secure:</span> Settles on Stellar network in 3-5 seconds with minimal fees.
+                </p>
+              </div>
+            </div>
           </div>
 
           {/* Right Column - Automatic Split Preview - Placeholder */}
