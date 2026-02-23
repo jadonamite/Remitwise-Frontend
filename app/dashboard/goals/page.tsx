@@ -2,17 +2,14 @@
 
 import { useState } from 'react'
 import {
-  Target,
-  DollarSign,
-  PiggyBank,
   GraduationCap,
   HeartPulse,
   Home,
   Plane,
 } from 'lucide-react'
 import PageHeader from '@/components/PageHeader'
-import DashboardInfoCard from '@/components/Dashboard/DashboardInfoCard'
 import SavingsGoalCard from '@/components/Dashboard/SavingsGoalCard'
+import SavingsGoalsStatsCards from './components/SavingsGoalsStatsCards'
 
 // Sample data matching Figma design
 const goalsData = [
@@ -94,22 +91,12 @@ export default function SavingsGoalsPage() {
       />
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Dashboard Info Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
-          <DashboardInfoCard
-            title="Total Goals"
-            value={String(totalGoals).padStart(2, '0')}
-            icon={<Target className="w-5 h-5" />}
-          />
-          <DashboardInfoCard
-            title="Total Target"
-            value={formatCurrency(totalTarget)}
-            icon={<DollarSign className="w-5 h-5" />}
-          />
-          <DashboardInfoCard
-            title="Total Saved"
-            value={formatCurrency(totalSaved)}
-            icon={<PiggyBank className="w-5 h-5" />}
+        {/* Savings Goals Stats Cards */}
+        <div className="mb-8">
+          <SavingsGoalsStatsCards
+            totalGoals={totalGoals}
+            totalTarget={totalTarget}
+            totalSaved={totalSaved}
           />
         </div>
 
