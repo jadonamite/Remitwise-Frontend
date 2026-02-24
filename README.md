@@ -151,3 +151,24 @@ If you want, I can also:
 - Move or duplicate any existing API route files into an explicit `app/api/v1/` folder.
 - Expand `openapi.yaml` with concrete endpoint definitions from your backend contract or tests.
 
+API Endpoints (v1)
+
+- `POST /api/bills` — Create bill transaction XDR
+   - Request headers: `x-user` (caller public key)
+   - Body: `{ name, amount, dueDate, recurring, frequencyDays }`
+   - Validations: `amount > 0`, `dueDate` valid ISO date, when `recurring === true` then `frequencyDays > 0`.
+   - Response: `{ xdr: string }` — unsigned transaction XDR ready for the frontend to sign and submit.
+
+- `POST /api/bills/[id]/pay` — Build pay-bill transaction XDR
+   - Request headers: `x-user` (caller public key)
+   - Response: `{ xdr: string }`
+
+- `POST /api/bills/[id]/cancel` — Build cancel-bill transaction XDR
+   - Request headers: `x-user` (caller public key)
+   - Optional owner-only enforcement: set header `x-owner-only: 1` and `x-owner` to require the caller match the owner.
+   - Response: `{ xdr: string }`
+
+Notes:
+- These endpoints return a transaction XDR composed of `manageData` operations that encode the requested action. The frontend should sign the returned XDR and submit it to Horizon (or via a backend submission endpoint) to complete the operation.
+- Server builds transactions using the Horizon URL in `HORIZON_URL` and network passphrase in `NETWORK_PASSPHRASE` (defaults to testnet). Set these environment variables in production to use a different network.
+
