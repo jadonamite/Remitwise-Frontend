@@ -18,7 +18,7 @@
   - **Property 4: Event storage completeness**
   - **Validates: Requirements 2.1, 2.2**
 
-- [ ] 3. Implement policy service for limit enforcement
+- [x] 3. Implement policy service for limit enforcement
   - Create PolicyService class with validateEmergencyTransfer method
   - Implement getEmergencyLimits method to fetch configuration
   - Add validation logic for max amount per transfer
