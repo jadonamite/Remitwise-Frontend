@@ -109,6 +109,7 @@ npm run test:e2e
 ```
 remitwise-frontend/
 ├── app/
+│   ├── api/                 # API routes
 │   ├── layout.tsx          # Root layout
 │   ├── page.tsx             # Home page
 │   ├── globals.css          # Global styles
@@ -119,10 +120,22 @@ remitwise-frontend/
 │   ├── bills/               # Bill payments
 │   ├── insurance/           # Insurance policies
 │   └── family/              # Family wallets
-├── components/              # Reusable components (to be added)
+├── components/              # Reusable components
+├── lib/                     # Utilities and helpers
+│   └── auth.ts              # Auth middleware
+├── docs/                    # Documentation
+│   └── API_ROUTES.md        # API routes documentation
 ├── public/                  # Static assets
 └── package.json
 ```
+
+## API Routes
+
+See [API Routes Documentation](./docs/API_ROUTES.md) for details on authentication and available endpoints.
+
+**Quick Reference:**
+- Public routes: `/api/health`, `/api/auth/*`
+- Protected routes: `/api/user/*`, `/api/split`, `/api/goals`, `/api/bills`, `/api/insurance`, `/api/family`, `/api/send`
 
 ## Integration Requirements
 
