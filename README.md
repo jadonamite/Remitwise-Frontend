@@ -502,3 +502,11 @@ Insurance endpoints (v1)
 Notes:
 - These endpoints return transaction XDRs composed with `manageData` operations to encode policy actions. If you prefer Soroban contract invocations, I can convert the builders to use contract calls.
 
+## API Discovery
+
+RemitWise exposes an OpenAPI discovery endpoint:
+
+/api/.well-known/openapi
+
+This allows integrators and wallets to automatically discover
+the RemitWise API specification.
