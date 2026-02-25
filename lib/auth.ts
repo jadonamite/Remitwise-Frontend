@@ -1,4 +1,4 @@
-import { NextRequest } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 /**
  * Validates the Authorization header.
@@ -20,4 +20,34 @@ export function unauthorizedResponse() {
     status: 401,
     headers: { "Content-Type": "application/json" },
   });
+}
+
+/**
+ * Higher-order function that wraps a route handler with auth validation.
+ * Extracts the Bearer token and passes it to the handler as `session`.
+ * Returns 401 if no valid token is present.
+ *
+ * Usage:
+ *   async function handler(req: NextRequest, session: string) { ... }
+ *   export const GET = withAuth(handler);
+ */
+export function withAuth(
+  handler: (request: NextRequest, session: string) => Promise<NextResponse>
+) {
+  return async (request: NextRequest): Promise<NextResponse> => {
+    const authHeader = request.headers.get("authorization") ?? "";
+    const token = authHeader.startsWith("Bearer ")
+      ? authHeader.slice(7).trim()
+      : null;
+
+    if (!token) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
+    if (token !== process.env.AUTH_SECRET) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
+    return handler(request, token);
+  };
 }
