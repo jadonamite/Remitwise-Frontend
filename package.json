@@ -24,7 +24,9 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "recharts": "^3.7.0",
-    "tailwind-merge": "^3.4.0"
+    "swagger-ui-react": "^5.31.2",
+    "tailwind-merge": "^3.4.0",
+    "yaml": "^2.8.2"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.4",
